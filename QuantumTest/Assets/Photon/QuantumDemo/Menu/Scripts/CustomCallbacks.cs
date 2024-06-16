@@ -12,16 +12,14 @@ public class CustomCallbacks : QuantumCallbacks
 		{
 			return;
 		}
-
 		QuantumLoadBalancingClient client = QuantumConnection.Instance.Client;
-
-		if (client is { IsConnected: true })
-		{
-			runtimePlayer.PlayerName = client.LocalPlayer.NickName;
-		}
-
 		foreach (var localPlayer in game.GetLocalPlayers())
 		{
+			if (client is { IsConnected: true })
+			{
+				runtimePlayer.PlayerName = client.LocalPlayer.NickName;
+			}
+
 			Debug.Log($"CustomCallbacks - sending player: {localPlayer}");
 			game.SendPlayerData(localPlayer, runtimePlayer);
 		}

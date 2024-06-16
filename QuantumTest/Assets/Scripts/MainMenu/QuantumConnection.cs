@@ -186,6 +186,12 @@ public class QuantumConnection : Singleton<QuantumConnection>, IConnectionCallba
 					Debug.LogError("There is no map, disconnecting");
 				}
 
+				if (client.LocalPlayer.IsMasterClient)
+				{
+					Hashtable ht = new Hashtable { { "STARTED", true } };
+					client.CurrentRoom.SetCustomProperties(ht);
+				}
+
 				StarQuantumGame();
 
 				break;
@@ -230,6 +236,13 @@ public class QuantumConnection : Singleton<QuantumConnection>, IConnectionCallba
 	public void OnJoinedRoom()
 	{
 		mainMenuUI.OnJoinedRoom();
+
+		if (client.CurrentRoom.CustomProperties.TryGetValue("MAP-GUID", out var mapGuidValue) &&
+		    client.CurrentRoom.CustomProperties.TryGetValue("STARTED", out var started))
+		{
+			mapGuid = (long)mapGuidValue;
+			StarQuantumGame();
+		}
 	}
 
 	public void OnJoinRoomFailed(short returnCode, string message)

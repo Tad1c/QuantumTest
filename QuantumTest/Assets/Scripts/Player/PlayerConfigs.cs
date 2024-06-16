@@ -21,11 +21,10 @@ public class PlayerConfigs : MonoBehaviour
 			{
 				CinemachineVirtualCamera virtualCamera = FindAnyObjectByType<CinemachineVirtualCamera>();
 				virtualCamera.m_Follow = transform;
-
-				string playerName = frame.GetPlayerData(playerLink.Player).PlayerName;
-				
-				playerHud.SetPlayerName(playerName);
 			}
+			
+			string playerName = frame.GetPlayerData(playerLink.Player).PlayerName;
+			playerHud.SetPlayerName(playerName);
 		}
 	}
 

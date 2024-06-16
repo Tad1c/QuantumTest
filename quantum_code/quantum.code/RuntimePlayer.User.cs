@@ -9,7 +9,7 @@ namespace Quantum
 
 		partial void SerializeUserData(BitStream stream)
 		{
-			stream.Serialize(ref CharacterPrototype.Id);
+			stream.Serialize(ref CharacterPrototype.Id.Value);
 			stream.Serialize(ref PlayerName);
 		}
 	}

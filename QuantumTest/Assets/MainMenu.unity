@@ -1377,6 +1377,7 @@ MonoBehaviour:
     CharacterPrototype:
       Id:
         Value: 765267016504648993
+    PlayerName: 
 --- !u!4 &1682856047
 Transform:
   m_ObjectHideFlags: 0

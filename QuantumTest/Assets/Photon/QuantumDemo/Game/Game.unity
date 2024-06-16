@@ -975,7 +975,7 @@ MonoBehaviour:
   - CharacterPrototype:
       Id:
         Value: 765267016504648993
-    PlayerName: None
+    PlayerName: Test
   PreloadAddressables: 0
   DynamicAssetDB:
     OnInitialDynamicAssetsRequested:
