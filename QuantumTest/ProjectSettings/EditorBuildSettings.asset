@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/MainMenu.unity
+    guid: 2c4558f30618947cdb31068adba0d4ff
+  - enabled: 1
+    path: Assets/Photon/QuantumDemo/Game/Game.unity
+    guid: 03bd5ba32b9950244a08f22579187d8b
   m_configObjects: {}
