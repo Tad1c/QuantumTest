@@ -38,7 +38,7 @@ namespace Quantum.PlayerSystem
 			}
 		}
 
-		public FPVector3 GetSpawnPosition(int playerNumber)
+		private FPVector3 GetSpawnPosition(int playerNumber)
 		{
 			return new FPVector3(-4 + (playerNumber * 2) + 1, 0, 0);
 		}

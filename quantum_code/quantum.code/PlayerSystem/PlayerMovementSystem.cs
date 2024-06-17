@@ -8,7 +8,6 @@ namespace Quantum.PlayerSystem
 		{
 			public EntityRef Entity;
 			public CharacterController3D* CharacterController3D;
-			public Transform3D* Transform3D;
 			public PlayerLink* Link;
 		}
 		
