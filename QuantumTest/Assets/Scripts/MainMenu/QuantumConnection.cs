@@ -13,6 +13,7 @@ public class QuantumConnection : Singleton<QuantumConnection>, IConnectionCallba
 	private QuantumLoadBalancingClient client;
 	
 	private long mapGuid;
+	private string roomName;
 
 	private enum PhotonEventCode : byte
 	{
@@ -156,7 +157,9 @@ public class QuantumConnection : Singleton<QuantumConnection>, IConnectionCallba
 
 		Debug.Log($"Using Map with GUID {mapGuid}");
 
-		EnterRoomParams enterRoomParams = CreateEnterRoomParams($"{mainMenuUI.PlayerName}'s Room");
+		roomName = $"{mainMenuUI.PlayerName}'s Room";
+
+		EnterRoomParams enterRoomParams = CreateEnterRoomParams(roomName);
 
 		OpJoinRandomRoomParams joinRandomRoomParams = new OpJoinRandomRoomParams();
 
@@ -236,6 +239,8 @@ public class QuantumConnection : Singleton<QuantumConnection>, IConnectionCallba
 	public void OnJoinedRoom()
 	{
 		mainMenuUI.OnJoinedRoom();
+		
+		
 
 		if (client.CurrentRoom.CustomProperties.TryGetValue("MAP-GUID", out var mapGuidValue) &&
 		    client.CurrentRoom.CustomProperties.TryGetValue("STARTED", out var started))

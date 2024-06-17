@@ -7,9 +7,13 @@ public class MainMenuUI : MonoBehaviour
 {
 	[SerializeField] private Transform memberList;
 	[SerializeField] private PlayerMemberView playerMemberView;
-
+	[SerializeField] private PlayButton playButton;
+		
+	[Header("Panels")]
 	[SerializeField] private GameObject mainMenuPanel;
 	[SerializeField] private GameObject roomPanel;
+	
+	[Header("Texts")]
 	[SerializeField] private TMP_Text roomLabel;
 	
 	private List<PlayerMemberView> playersViews = new List<PlayerMemberView>();
@@ -18,8 +22,10 @@ public class MainMenuUI : MonoBehaviour
 
 	private string playerName;
 
+	private Room room;
+
 	public string PlayerName => playerName;
-	
+
 	public void OnPlayerNameAdded(string input)
 	{
 		playerName = input;
@@ -63,13 +69,40 @@ public class MainMenuUI : MonoBehaviour
 		{
 			playersViews[i].Hide();
 		}
+
+		PlayButtonState(client);
+	}
+
+	private void PlayButtonState(QuantumLoadBalancingClient client)
+	{
+		if (client.LocalPlayer.IsMasterClient)
+		{
+			if (room.PlayerCount > 1)
+			{
+				playButton.SetText("Start the Game");
+				playButton.SetStateOfButton(true);
+			}
+			else
+			{
+				playButton.SetText("Waiting for others...");
+				playButton.SetStateOfButton(false);
+			}
+		}
+		else
+		{
+			playButton.SetText("Waiting for master to start the game");
+			playButton.SetStateOfButton(false);
+		}
 	}
 
 	public void OnJoinedRoom()
 	{
+		room ??= QuantumConnection.Instance.Client.CurrentRoom;
+		
 		UpdateRoomDetails();
 		mainMenuPanel.SetActive(false);
 		roomPanel.SetActive(true);
-		roomLabel.SetText(QuantumConnection.Instance.Client.CurrentRoom.Name);
+		
+		roomLabel.SetText(room.Name);
 	}
 }

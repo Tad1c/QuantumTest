@@ -5,13 +5,13 @@ public class CustomCallbacks : QuantumCallbacks
 {
 	[SerializeField] private RuntimePlayer runtimePlayer;
 
-	public override void OnGameStart(Quantum.QuantumGame game)
+	public override void OnGameStart(QuantumGame game)
 	{
-		// paused on Start means waiting for Snapshot
 		if (game.Session.IsPaused)
 		{
 			return;
 		}
+		
 		QuantumLoadBalancingClient client = QuantumConnection.Instance.Client;
 		foreach (var localPlayer in game.GetLocalPlayers())
 		{
@@ -25,7 +25,7 @@ public class CustomCallbacks : QuantumCallbacks
 		}
 	}
 
-	public override void OnGameResync(Quantum.QuantumGame game)
+	public override void OnGameResync(QuantumGame game)
 	{
 		Debug.Log("Detected Resync. Verified tick: " + game.Frames.Verified.Number);
 	}

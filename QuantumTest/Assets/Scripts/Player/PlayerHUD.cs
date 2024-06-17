@@ -1,4 +1,3 @@
-using Cinemachine;
 using TMPro;
 using UnityEngine;
 
@@ -9,7 +8,6 @@ public class PlayerHUD : MonoBehaviour
 
 	public void SetPlayerName(string name)
 	{
-		Debug.Log($"Name Set as {name} ");
 		lable.SetText(name);
 	}
 }

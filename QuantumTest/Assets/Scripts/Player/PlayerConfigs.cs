@@ -1,6 +1,5 @@
 using Cinemachine;
 using Quantum;
-using Quantum.PlayerSystem;
 using UnityEngine;
 public class PlayerConfigs : MonoBehaviour
 {
